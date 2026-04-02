@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flight Price Tracker AI Agent — monitors prices across multiple sites, reasons about deals, and books flights autonomously.">
+  <title>FlightTracker AI — Never Overpay for a Flight Again</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+  <link rel="stylesheet" href="/src/index.css">
+</head>
+<body>
+  <!-- Grain overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">✈</span>
+      <span class="logo-text">FlightTracker<span class="logo-ai">AI</span></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="dashboard" id="nav-dashboard">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-view="search" id="nav-search">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">Search</span>
+      </a>
+      <a href="#" class="nav-item" data-view="trends" id="nav-trends">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Trends</span>
+      </a>
+      <a href="#" class="nav-item" data-view="alerts" id="nav-alerts">
+        <span class="nav-icon">🔔</span>
+        <span class="nav-label">Alerts</span>
+        <span class="nav-badge" id="alert-badge">3</span>
+      </a>
+      <a href="#" class="nav-item" data-view="booking" id="nav-booking">
+        <span class="nav-icon">🎫</span>
+        <span class="nav-label">Booking</span>
+      </a>
+      <a href="#" class="nav-item" data-view="vault" id="nav-vault">
+        <span class="nav-icon">🔐</span>
+        <span class="nav-label">Vault</span>
+      </a>
+      <a href="#" class="nav-item" data-view="chat" id="nav-chat">
+        <span class="nav-icon">💬</span>
+        <span class="nav-label">Chat</span>
+        <span class="nav-badge pulse-badge">1</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">V</div>
+        <div class="user-info">
+          <div class="user-name">Vaibhavi L.</div>
+          <div class="user-status"><span class="status-dot"></span>Agent Active</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile top bar -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-logo">✈ FlightTracker<span class="logo-ai">AI</span></div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content" id="mainContent">
+    <div id="view-dashboard" class="view active"></div>
+    <div id="view-search" class="view"></div>
+    <div id="view-trends" class="view"></div>
+    <div id="view-alerts" class="view"></div>
+    <div id="view-booking" class="view"></div>
+    <div id="view-vault" class="view"></div>
+    <div id="view-chat" class="view"></div>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
