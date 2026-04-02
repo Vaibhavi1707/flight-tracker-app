@@ -4,27 +4,27 @@
 import { liveDeals } from '../data/mock-data.js';
 
 function getScoreClass(score) {
-    if (score >= 90) return 'great';
-    if (score >= 80) return 'good';
-    if (score >= 65) return 'fair';
-    return 'poor';
+  if (score >= 90) return 'great';
+  if (score >= 80) return 'good';
+  if (score >= 65) return 'fair';
+  return 'poor';
 }
 
 function getScoreColor(score) {
-    if (score >= 90) return '#2ed573';
-    if (score >= 80) return '#06d6a0';
-    if (score >= 65) return '#ffd166';
-    return '#ff4757';
+  if (score >= 90) return '#2ed573';
+  if (score >= 80) return '#06d6a0';
+  if (score >= 65) return '#ffd166';
+  return '#ff4757';
 }
 
 function getTrendIcon(trend) {
-    if (trend === 'down') return '📉';
-    if (trend === 'up') return '📈';
-    return '➡️';
+  if (trend === 'down') return '📉';
+  if (trend === 'up') return '📈';
+  return '➡️';
 }
 
 export function renderDashboard(container) {
-    container.innerHTML = `
+  container.innerHTML = `
     <div class="page-header" style="position:relative;">
       <div class="glow glow-cyan" style="width:400px;height:400px;top:-100px;right:-100px;position:absolute;"></div>
       <span class="page-tag tag-cyan">Dashboard</span>
@@ -97,18 +97,21 @@ export function renderDashboard(container) {
     </div>
   `;
 
-    const dealsContainer = container.querySelector('#dashDeals');
-    liveDeals.forEach((deal, i) => {
-        const card = document.createElement('div');
-        card.className = 'deal-card';
-        card.style.animationDelay = `${i * 0.1}s`;
-        card.innerHTML = `
+  const dealsContainer = container.querySelector('#dashDeals');
+  liveDeals.forEach((deal, i) => {
+    const card = document.createElement('div');
+    card.className = 'deal-card';
+    card.style.animationDelay = `${i * 0.1}s`;
+    card.innerHTML = `
       <div class="deal-header">
         <div>
           <div class="deal-route">${deal.from} <span class="arrow">→</span> ${deal.to}</div>
           <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem;">${deal.airline.name}</div>
         </div>
-        <div class="deal-price">$${deal.price}</div>
+        <div style="text-align:right;">
+          <div class="deal-price">$${deal.price}</div>
+          ${deal.savings > 80 ? `<div class="chip chip-green" style="margin-top:0.3rem;font-size:0.68rem;">Save $${deal.savings}</div>` : ''}
+        </div>
       </div>
       <div class="deal-meta">
         <span>⏱ ${deal.duration}</span>
@@ -116,14 +119,14 @@ export function renderDashboard(container) {
         <span>${getTrendIcon(deal.trend)} ${deal.trend === 'down' ? 'Dropping' : deal.trend === 'up' ? 'Rising' : 'Stable'}</span>
       </div>
       <div class="deal-footer">
-        <div class="deal-source">via ${deal.source}</div>
+        <div class="deal-source">via <strong>${deal.source}</strong></div>
         <div class="deal-score ${getScoreClass(deal.score)}">
+          <span style="font-size:0.68rem;color:var(--text-muted);font-family:'Outfit',sans-serif;font-weight:400;">Deal Score</span>
           <div class="score-bar"><div class="score-bar-fill" style="width:${deal.score}%;background:${getScoreColor(deal.score)}"></div></div>
           ${deal.score}/100
         </div>
       </div>
-      ${deal.savings > 100 ? `<div class="chip chip-green" style="position:absolute;top:12px;right:12px;">Save $${deal.savings}</div>` : ''}
     `;
-        dealsContainer.appendChild(card);
-    });
+    dealsContainer.appendChild(card);
+  });
 }
